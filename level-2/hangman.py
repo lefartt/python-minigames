@@ -69,7 +69,7 @@ hangman_stages = [
 ]
 
 
-with open("words.json", "r") as file:
+with open("level-2/words.json", "r") as file:
     words = json.load(file)
 
 
@@ -119,9 +119,10 @@ while "_" in display and wrong_guesses < max_wrong_guesses:
     else:
         wrong_guesses += 1
         print("Wrong!")
-        print(f"Wrong guesses: {wrong_guesses}/{max_wrong_guesses}")
 
+    print(f"Hint: {hint}")
     print(hangman_stages[wrong_guesses])
+    print(f"Wrong guesses: {wrong_guesses}/{max_wrong_guesses}")
     print(" ".join(display))
 
 
