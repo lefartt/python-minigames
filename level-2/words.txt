@@ -1,0 +1,15 @@
+python
+computer
+keyboard
+programming
+security
+network
+internet
+software
+hardware
+terminal
+database
+algorithm
+function
+variable
+developer
