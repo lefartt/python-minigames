@@ -4,6 +4,8 @@ A collection of Python mini games created while learning Python programming.
 
 The project is organized into levels, with each level gradually increasing in difficulty and introducing new Python concepts.
 
+The project includes both **Command-Line Interface (CLI)** and **Graphical User Interface (GUI)** versions of the games.
+
 ---
 
 ## 📚 Project Levels
@@ -115,6 +117,9 @@ Level 2 introduces more structured data, external data files, and more complex g
 * Data processing
 * Game state
 * Input validation
+* Nested loops
+* Random selection
+* More complex game rules
 
 ### Games
 
@@ -155,13 +160,138 @@ Example:
 
 **Game:** [`level-2/hangman.py`](level-2/hangman.py)
 
+**Theory:** [Hangman Theory](level-2/theory/hangman.md)
+
+---
+
+#### 2. Blackjack
+
+A simplified Blackjack game where the player competes against the dealer.
+
+Features include:
+
+* 52-card deck
+* Card shuffling
+* Player and dealer hands
+* Hit or Stand decisions
+* Dealer rules
+* Blackjack detection
+* Ace value handling
+* Score calculation
+* Win/loss/draw conditions
+
+**Game:** [`level-2/blackjack.py`](level-2/blackjack.py)
+
+**Theory:** [Blackjack Theory](level-2/theory/blackjack.md)
+
+---
+
+#### 3. Tic-Tac-Toe
+
+A two-player Tic-Tac-Toe game with an optional simple AI opponent.
+
+Features include:
+
+* Player vs Player mode
+* Player vs AI mode
+* Board representation using lists
+* Position validation
+* Win detection
+* Draw detection
+* Game state management
+* Random-move AI
+* Replay functionality
+
+**Game:** [`level-2/tic_tac_toe.py`](level-2/tic_tac_toe.py)
+
+**Theory:** [Tic-Tac-Toe Theory](level-2/theory/tic_tac_toe.md)
+
 ---
 
 ### Level 2 Theory
 
-A theory guide will document the intermediate Python concepts introduced throughout Level 2.
+Level 2 theory documents explain the Python concepts introduced by each game.
 
-**Planned:** Level 2 theory will be added as more games are developed.
+The theory focuses on understanding **why the code works**, rather than simply copying the code.
+
+---
+
+# 🖥️ CLI and GUI Interfaces
+
+The project supports two different ways of playing the games.
+
+## Command-Line Interface (CLI)
+
+The original games are designed to run directly in the terminal.
+
+For example:
+
+```bash
+python3 level-1/coin_flip.py
+```
+
+The CLI versions use:
+
+* `input()`
+* Terminal output
+* Text-based menus
+* Keyboard input
+* Console game loops
+
+The CLI games remain separate from the GUI versions.
+
+---
+
+## 🖼️ Graphical User Interface (GUI)
+
+A GUI version of the games is being developed using Python's built-in **Tkinter** library.
+
+The GUI includes a central game launcher where players can select games.
+
+Current GUI structure:
+
+```text
+gui/
+├── game_launcher.py
+└── coin_flip_gui.py
+```
+
+The GUI launcher can be started with:
+
+```bash
+python3 gui/game_launcher.py
+```
+
+### Why separate CLI and GUI versions?
+
+The CLI and GUI versions are intentionally kept separate.
+
+This allows the project to demonstrate how the same game concept can be implemented using different interfaces.
+
+```text
+CLI
+  ↓
+Terminal input/output
+
+GUI
+  ↓
+Tkinter windows, buttons and events
+```
+
+The GUI version introduces new Python concepts such as:
+
+* Tkinter
+* Windows
+* Labels
+* Buttons
+* Frames
+* `Toplevel()` windows
+* Button commands
+* Event-driven programming
+* GUI layout
+* Separating interface code from game code
+
+The GUI will be expanded gradually as more games are converted.
 
 ---
 
@@ -185,8 +315,19 @@ python-minigames/
 │
 ├── level-2/
 │   ├── hangman.py
+│   ├── blackjack.py
+│   ├── tic_tac_toe.py
 │   ├── words.txt
-│   └── words.json
+│   ├── words.json
+│   │
+│   └── theory/
+│       ├── hangman.md
+│       ├── blackjack.md
+│       └── tic_tac_toe.md
+│
+├── gui/
+│   ├── game_launcher.py
+│   └── coin_flip_gui.py
 │
 ├── screenshots/
 │   ├── number_guess.png
@@ -210,7 +351,7 @@ Make sure Python 3 is installed.
 
 From the project directory:
 
-### Level 1
+## CLI — Level 1
 
 ```bash
 python3 level-1/number_guess.py
@@ -228,10 +369,24 @@ python3 level-1/dice_roller.py
 python3 level-1/rock_paper_scissors.py
 ```
 
-### Level 2
+## CLI — Level 2
 
 ```bash
 python3 level-2/hangman.py
+```
+
+```bash
+python3 level-2/blackjack.py
+```
+
+```bash
+python3 level-2/tic_tac_toe.py
+```
+
+## GUI
+
+```bash
+python3 gui/game_launcher.py
 ```
 
 ---
@@ -258,6 +413,8 @@ GUI & Graphics
 
 The goal is to understand **why the code works**, rather than simply copying finished programs.
 
+Each game is accompanied by theory documentation explaining the Python concepts used to build it.
+
 ---
 
 # 🚧 Future Levels
@@ -275,6 +432,8 @@ Planned topics:
 
 ### Level 4 — GUI & Complex Games
 
+The GUI development has already started.
+
 Planned topics:
 
 * Graphical interfaces
@@ -285,6 +444,7 @@ Planned topics:
 * Game menus
 * Launchers
 * Graphical versions of existing games
+* More advanced GUI layouts
 
 ### Level 5 — 2 Player / Networking
 
@@ -305,21 +465,49 @@ Planned topics:
 Current progress:
 
 * [x] Level 1 — Python Basics
+
 * [x] Number Guessing
+
 * [x] Coin Flip
+
 * [x] Dice Roller
+
 * [x] Rock Paper Scissors
+
 * [x] Level 1 Theory
+
 * [x] Level 2 — Intermediate Python
+
 * [x] Hangman
+
+* [x] Blackjack
+
+* [x] Tic-Tac-Toe
+
 * [x] JSON word database
-* [ ] Level 2 Theory
-* [ ] Quiz Game
-* [ ] Blackjack
-* [ ] Number Analyzer
-* [ ] Text Adventure
+
+* [x] Level 2 Theory
+
+* [x] GUI launcher
+
+* [x] GUI / CLI separation
+
+* [x] GUI Coin Flip
+
+* [ ] GUI Dice Roller
+
+* [ ] GUI Number Guessing
+
+* [ ] GUI Rock Paper Scissors
+
+* [ ] GUI Hangman
+
+* [ ] GUI Blackjack
+
+* [ ] GUI Tic-Tac-Toe
+
 * [ ] Level 3
-* [ ] Level 4
+
 * [ ] Level 5
 
 ---
