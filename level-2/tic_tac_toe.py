@@ -40,7 +40,7 @@ def board_full(board):
 
 def get_player_move(board):
     while True:
-        choice = input("Choose a position (1-9): ")
+        choice = input("Choose a position (1-9): ").strip()
 
         if not choice.isdigit():
             print("Please enter a number from 1 to 9.")
