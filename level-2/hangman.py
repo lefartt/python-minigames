@@ -1,5 +1,6 @@
-import random
 import json
+import random
+from pathlib import Path
 
 
 hangman_stages = [
@@ -69,7 +70,9 @@ hangman_stages = [
 ]
 
 
-with open("level-2/words.json", "r") as file:
+words_file = Path(__file__).resolve().parent / "words.json"
+
+with open(words_file, "r", encoding="utf-8") as file:
     words = json.load(file)
 
 
