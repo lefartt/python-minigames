@@ -253,7 +253,8 @@ Current GUI structure:
 ```text
 gui/
 ├── game_launcher.py
-└── coin_flip_gui.py
+├── coin_flip_gui.py
+└── dice_roller_gui.py
 ```
 
 The GUI launcher can be started with:
@@ -327,7 +328,8 @@ python-minigames/
 │
 ├── gui/
 │   ├── game_launcher.py
-│   └── coin_flip_gui.py
+│   ├── coin_flip_gui.py
+│   └── dice_roller_gui.py
 │
 ├── screenshots/
 │   ├── number_guess.png
@@ -494,7 +496,7 @@ Current progress:
 
 * [x] GUI Coin Flip
 
-* [ ] GUI Dice Roller
+* [x] GUI Dice Roller
 
 * [ ] GUI Number Guessing
 

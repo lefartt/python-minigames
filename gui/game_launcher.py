@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 from coin_flip_gui import open_coin_flip
+from dice_roller_gui import open_dice_roller
 
 
 # =========================
@@ -36,7 +37,6 @@ title = tk.Label(
     font=("Arial", 28, "bold")
 )
 title.pack(pady=(30, 5))
-
 
 subtitle = tk.Label(
     root,
@@ -82,7 +82,7 @@ dice_button = tk.Button(
     font=("Arial", 13),
     width=25,
     height=2,
-    command=lambda: not_connected("Dice Roller")
+    command=lambda: open_dice_roller(root)
 )
 dice_button.pack(pady=5)
 
