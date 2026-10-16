@@ -61,6 +61,7 @@ def get_player_move(board):
         return index
 
 
+
 def get_ai_move(board):
     available_positions = []
 
@@ -68,6 +69,27 @@ def get_ai_move(board):
         if board[index] not in ["X", "O"]:
             available_positions.append(index)
 
+    # 1. Try to win immediately.
+    for index in available_positions:
+        board[index] = "O"
+
+        if check_winner(board, "O"):
+            board[index] = str(index + 1)
+            return index
+
+        board[index] = str(index + 1)
+
+    # 2. Block the player's immediate winning move.
+    for index in available_positions:
+        board[index] = "X"
+
+        if check_winner(board, "X"):
+            board[index] = str(index + 1)
+            return index
+
+        board[index] = str(index + 1)
+
+    # 3. Otherwise, choose a random available position.
     return random.choice(available_positions)
 
 
