@@ -3,6 +3,7 @@ from tkinter import messagebox
 
 from coin_flip_gui import open_coin_flip
 from dice_roller_gui import open_dice_roller
+from number_guess_gui import open_number_guess
 
 
 # =========================
@@ -93,8 +94,9 @@ guess_button = tk.Button(
     font=("Arial", 13),
     width=25,
     height=2,
-    command=lambda: not_connected("Number Guess")
+    command=lambda: open_number_guess(root)
 )
+
 guess_button.pack(pady=5)
 
 
