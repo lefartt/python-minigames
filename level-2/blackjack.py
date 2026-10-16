@@ -9,6 +9,7 @@ RANKS = [
 
 
 def create_deck():
+    """Create a standard 52-card deck."""
     deck = []
 
     for suit in SUITS:
@@ -19,10 +20,12 @@ def create_deck():
 
 
 def deal_card(deck):
+    """Draw and remove one card from the deck."""
     return deck.pop()
 
 
 def calculate_score(hand):
+    """Calculate a hand's score, adjusting Aces when necessary."""
     score = 0
     aces = 0
 
@@ -31,15 +34,13 @@ def calculate_score(hand):
 
         if rank in ["J", "Q", "K"]:
             score += 10
-
         elif rank == "A":
             score += 11
             aces += 1
-
         else:
             score += int(rank)
 
-    # Change Ace from 11 to 1 if the hand would bust
+    # Change Aces from 11 to 1 if the hand would bust.
     while score > 21 and aces:
         score -= 10
         aces -= 1
@@ -48,79 +49,55 @@ def calculate_score(hand):
 
 
 def is_blackjack(hand):
+    """Check whether a two-card hand totals 21."""
     return len(hand) == 2 and calculate_score(hand) == 21
 
 
 def play_round():
-    # -------------------------
-    # Create and shuffle deck
-    # -------------------------
-
+    """Play one round of Blackjack."""
+    # Create and shuffle a fresh deck.
     deck = create_deck()
     random.shuffle(deck)
 
-    # -------------------------
-    # Deal initial cards
-    # -------------------------
-
+    # Deal two cards to each player.
     player_hand = [deal_card(deck), deal_card(deck)]
     dealer_hand = [deal_card(deck), deal_card(deck)]
 
     player_score = calculate_score(player_hand)
     dealer_score = calculate_score(dealer_hand)
 
-    # -------------------------
-    # Initial display
-    # -------------------------
-
     print("\n========== BLACKJACK ==========\n")
-
     print("Your cards:", player_hand)
     print("Your score:", player_score)
-
-    # Hide dealer's second card
     print("\nDealer's cards:", dealer_hand[0], "[?]")
 
-    # -------------------------
-    # Check for Blackjack
-    # -------------------------
-
+    # Check for Blackjack before the player's turn.
     player_blackjack = is_blackjack(player_hand)
     dealer_blackjack = is_blackjack(dealer_hand)
 
     if player_blackjack or dealer_blackjack:
-
         print("\n========== BLACKJACK CHECK ==========")
-
         print("Dealer's cards:", dealer_hand)
         print("Dealer's score:", dealer_score)
 
         if player_blackjack and dealer_blackjack:
             print("\nBoth have Blackjack! It's a draw.")
-
         elif player_blackjack:
             print("\nBlackjack! You win!")
-
         else:
             print("\nDealer has Blackjack! You lose.")
 
         return
 
-    # -------------------------
-    # Player's turn
-    # -------------------------
-
+    # Player chooses to hit or stand.
     while player_score < 21:
-
         choice = input(
             "\nDo you want to Hit or Stand? (h/s): "
-        ).lower()
+        ).strip().lower()
 
         if choice == "h":
-
             new_card = deal_card(deck)
             player_hand.append(new_card)
-
             player_score = calculate_score(player_hand)
 
             print("\nYou drew:", new_card)
@@ -132,33 +109,23 @@ def play_round():
                 break
 
         elif choice == "s":
-
             print("\nYou stand.")
             break
 
         else:
-
             print("Invalid choice. Please enter 'h' or 's'.")
 
-    # -------------------------
-    # Dealer's turn
-    # -------------------------
-
+    # Dealer plays only if the player has not busted.
     if player_score <= 21:
-
         print("\n========== DEALER'S TURN ==========")
-
-        # Reveal hidden card
         print("Dealer reveals:", dealer_hand)
         print("Dealer's score:", dealer_score)
 
         while dealer_score < 17:
-
             print("\nDealer hits!")
 
             new_card = deal_card(deck)
             dealer_hand.append(new_card)
-
             dealer_score = calculate_score(dealer_hand)
 
             print("Dealer drew:", new_card)
@@ -167,62 +134,45 @@ def play_round():
 
         if dealer_score > 21:
             print("\nDealer busts!")
-
         else:
             print("\nDealer stands.")
 
-    # -------------------------
-    # Final result
-    # -------------------------
-
+    # Compare final scores.
     print("\n========== FINAL RESULT ==========")
-
     print("Your cards:", player_hand)
     print("Your score:", player_score)
-
     print("Dealer's cards:", dealer_hand)
     print("Dealer's score:", dealer_score)
 
     if player_score > 21:
-
         print("\nYou lose! You busted.")
-
     elif dealer_score > 21:
-
         print("\nYou win! Dealer busted.")
-
     elif player_score > dealer_score:
-
         print("\nYou win!")
-
     elif player_score < dealer_score:
-
         print("\nDealer wins!")
-
     else:
-
         print("\nIt's a draw.")
 
 
-# -------------------------
-# Game loop
-# -------------------------
-
-while True:
-
-    play_round()
-
+def main():
+    """Run rounds until the player chooses to quit."""
     while True:
+        play_round()
 
-        replay = input("\nPlay again? (y/n): ").lower()
+        while True:
+            replay = input("\nPlay again? (y/n): ").strip().lower()
 
-        if replay == "y":
-            break
+            if replay == "y":
+                break
+            elif replay == "n":
+                print("\nThanks for playing Blackjack!")
+                print("Goodbye!")
+                return
+            else:
+                print("Invalid choice. Please enter 'y' or 'n'.")
 
-        elif replay == "n":
-            print("\nThanks for playing Blackjack!")
-            print("Goodbye!")
-            exit()
 
-        else:
-            print("Invalid choice. Please enter 'y' or 'n'.")
+if __name__ == "__main__":
+    main()
